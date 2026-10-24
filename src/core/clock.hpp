@@ -18,11 +18,13 @@ class LogicalClock {
     timestamp current_{0};
 };
 
-[[nodiscard]] inline timestamp now_ns() noexcept { // now_ns ( nanoseconds ) is easier to call but more appropriate name would be steady timestamp ( not the wall clock but system clock )
-    const auto now = std::chrono::steady_clock::now().time_since_epoch() ;
+[[nodiscard]] inline timestamp
+now_ns() noexcept { // now_ns ( nanoseconds ) is easier to call but more
+                    // appropriate name would be steady timestamp ( not the wall
+                    // clock but system clock )
+    const auto now = std::chrono::steady_clock::now().time_since_epoch();
 
     return static_cast<timestamp>(
-        std::chrono::duration_cast<std::chrono::nanoseconds>(now).count()
-    ); 
+        std::chrono::duration_cast<std::chrono::nanoseconds>(now).count());
 }
 } // namespace exchange::core
